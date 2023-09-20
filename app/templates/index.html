@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css')}}" >
+    <title>Haven Helper</title>
+</head>
+<body>
+    <h1>Jennie Dunn's Haven Activity Updater</h1>
+    <h3 class="heading">Current Data as of: {{ report_date }}</h3>
+    <div class="data-container">
+        {% if data %}
+            <table class="data-table">
+                <tbody id="table-body">
+                    <tr>
+                        <th scope="col">created_on</th>
+                        <th scope="col">customer_id</th>
+                        <th scope="col">policyNumber</th>
+                        <th scope="col">referralId</th>
+                        <th scope="col">accountCreateDate</th>
+                        <th scope="col">igoDate</th>
+                        <th scope="col">offerDate</th>
+                        <th scope="col">applicationSignedDate</th>
+                        <th scope="col">issuedDate</th>
+                        <th scope="col">status</th>
+                        <th scope="col">paidToDate</th>
+                        <th scope="col">pending_ir</th>
+                        <th scope="col">canceled_ir</th>
+                        <th scope="col">declined_ir</th>
+                        <th scope="col">monthlyPremium</th>
+                        <th scope="col">faceAmount</th>
+                        <th scope="col">term</th>
+                        <th scope="col">finalRateClass</th>
+                        <th scope="col">finalRateClassName</th>
+                        <th scope="col">paidSource</th>
+                        <th scope="col">paidSource_campaign</th>
+                        <th scope="col">telesalesAgency</th>
+                        <th scope="col">agentName</th>
+                        <th scope="col">product</th>
+                        <th scope="col">initialProductType</th>
+                        <th scope="col">firstName</th>
+                        <th scope="col">lastName</th>
+                        <th scope="col">dateOfBirth</th>
+                        <th scope="col">email</th>
+                        <th scope="col">address</th>
+                        <th scope="col">phoneNumber</th>
+                    </tr>
+                    {% for row in data %}
+                        <tr>
+                            <td>{{ row.created_on }}</td>
+                            <td>{{ row.customer_id }}</td>
+                            <td>{{ row.policyNumber }}</td>
+                            <td>{{ row.referralId }}</td>
+                            <td>{{ row.accountCreateDate }}</td>
+                            <td>{{ row.igoDate }}</td>
+                            <td>{{ row.offerDate }}</td>
+                            <td>{{ row.applicationSignedDate }}</td>
+                            <td>{{ row.issuedDate }}</td>
+                            <td>{{ row.status }}</td>
+                            <td>{{ row.paidToDate }}</td>
+                            <td>{{ row.pending_ir }}</td>
+                            <td>{{ row.canceled_ir }}</td>
+                            <td>{{ row.declined_ir }}</td>
+                            <td>{{ row.monthlyPremium }}</td>
+                            <td>{{ row.faceAmount }}</td>
+                            <td>{{ row.term }}</td>
+                            <td>{{ row.finalRateClass }}</td>
+                            <td>{{ row.paidSource }}</td>
+                            <td>{{ row.paidSource_campaign }}</td>
+                            <td>{{ row.telesalesAgency }}</td>
+                            <td>{{ row.agentName }}</td>
+                            <td>{{ row.product }}</td>
+                            <td>{{ row.initialProductType }}</td>
+                            <td>{{ row.firstName }}</td>
+                            <td>{{ row.lastName }}</td>
+                            <td>{{ row.dateOfBirth }}</td>
+                            <td>{{ row.email }}</td>
+                            <td>{{ row.address }}</td>
+                            <td>{{ row.phoneNumber }}</td>
+                        </tr>                  
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+    <h3 class="heading">Submit New Data </h3>
+    <form class="form-container" 
+        action="/new" 
+        method="POST" 
+        enctype="multipart/form-data"
+    >
+        {{ form.csrf_token }}
+        <p>{{ form.file.label }}: {{ form.file }}</p>
+        <p>{{ form.date.label }}: {{ form.date }}</p>
+        <p>{{ form.submit }}</p>
+    </form>
+    <h3 class="heading">New Data from last update</h3>
+    <div class="newdata-container">
+        {% if new_data %}
+        <table class="data-table">
+            <tbody id="table-body">
+                <tr>
+                    <th scope="col">customer_id</th>
+                    <th scope="col">policyNumber</th>
+                    <th scope="col">referralId</th>
+                    <th scope="col">accountCreateDate</th>
+                    <th scope="col">igoDate</th>
+                    <th scope="col">offerDate</th>
+                    <th scope="col">applicationSignedDate</th>
+                    <th scope="col">issuedDate</th>
+                    <th scope="col">status</th>
+                    <th scope="col">paidToDate</th>
+                    <th scope="col">pending_ir</th>
+                    <th scope="col">canceled_ir</th>
+                    <th scope="col">declined_ir</th>
+                    <th scope="col">monthlyPremium</th>
+                    <th scope="col">faceAmount</th>
+                    <th scope="col">term</th>
+                    <th scope="col">finalRateClass</th>
+                    <th scope="col">finalRateClassName</th>
+                    <th scope="col">paidSource</th>
+                    <th scope="col">paidSource_campaign</th>
+                    <th scope="col">telesalesAgency</th>
+                    <th scope="col">agentName</th>
+                    <th scope="col">product</th>
+                    <th scope="col">initialProductType</th>
+                    <th scope="col">firstName</th>
+                    <th scope="col">lastName</th>
+                    <th scope="col">dateOfBirth</th>
+                    <th scope="col">email</th>
+                    <th scope="col">address</th>
+                    <th scope="col">phoneNumber</th>
+                </tr>
+                {% for row in new_data %}
+                    <tr>
+                        <td>{{ row.customer_id }}</td>
+                        <td>{{ row.policyNumber }}</td>
+                        <td>{{ row.referralId }}</td>
+                        <td>{{ row.accountCreateDate }}</td>
+                        <td>{{ row.igoDate }}</td>
+                        <td>{{ row.offerDate }}</td>
+                        <td>{{ row.applicationSignedDate }}</td>
+                        <td>{{ row.issuedDate }}</td>
+                        <td>{{ row.status }}</td>
+                        <td>{{ row.paidToDate }}</td>
+                        <td>{{ row.pending_ir }}</td>
+                        <td>{{ row.canceled_ir }}</td>
+                        <td>{{ row.declined_ir }}</td>
+                        <td>{{ row.monthlyPremium }}</td>
+                        <td>{{ row.faceAmount }}</td>
+                        <td>{{ row.term }}</td>
+                        <td>{{ row.finalRateClass }}</td>
+                        <td>{{ row.paidSource }}</td>
+                        <td>{{ row.paidSource_campaign }}</td>
+                        <td>{{ row.telesalesAgency }}</td>
+                        <td>{{ row.agentName }}</td>
+                        <td>{{ row.product }}</td>
+                        <td>{{ row.initialProductType }}</td>
+                        <td>{{ row.firstName }}</td>
+                        <td>{{ row.lastName }}</td>
+                        <td>{{ row.dateOfBirth }}</td>
+                        <td>{{ row.email }}</td>
+                        <td>{{ row.address }}</td>
+                        <td>{{ row.phoneNumber }}</td>
+                    </tr>                  
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+
+</body>
+</html>

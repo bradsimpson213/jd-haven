@@ -1,0 +1,40 @@
+body {
+    background-color: cornflowerblue;
+}
+
+h1 {
+    color: whitesmoke;
+    text-shadow: -1px -1px 0 #000, 
+    1px -1px 0 #000, 
+    -1px 1px 0 #000, 
+    1px 1px 0 #000;
+}
+
+.heading {
+    color: whitesmoke;
+    text-shadow: -1px -1px 0 #000, 
+    1px -1px 0 #000, 
+    -1px 1px 0 #000, 
+    1px 1px 0 #000;
+    margin-bottom: 4px;
+}
+
+
+.form-container {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: whitesmoke;
+}
+
+.data-container,
+.newdata-container  {
+    height: 30vh;
+    overflow: scroll;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: whitesmoke;
+    margin-bottom: 5px;
+}
